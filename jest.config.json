@@ -1,0 +1,18 @@
+{
+  "preset": "ts-jest",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "**/src/**/*.{js,jsx,ts,tsx}",
+    "!src/contexts/FeedbackyContext.tsx"
+  ],
+  "coverageDirectory": "coverage",
+  "testEnvironment": "jsdom",
+  "testMatch": ["**/src/**/*.test.{js,jsx,ts,tsx}"],
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.ts"
+  },
+  "setupFiles": ["<rootDir>/jestSetup.ts"]
+}
