@@ -4,12 +4,12 @@
 
 - [What Is Feedbacky?](#feedbacky)
 - [Demo](#demo)
-- [Usages](#usages)
-- [Usage Via NPM](#npm)
-- [Usage Via CDN](#cdn)
-- [Prop Types Table](#props)
+- [Install Via NPM](#npm)
+- [Install Via CDN](#cdn)
+- [Props Table](#props)
 - [How To Get A Google Sheet Id?](#google-sheet)
-- [Additional Notes](#notes)
+- [What I Learned](#learn)
+- [Notes For Reviewer](#notes)
 
 > **Feedbacky:** A Feedback is a product integrable with web applications.
 
@@ -19,19 +19,18 @@
 
 ## Demo <a name="demo"></a>
 
-- [Feedbacky Demo](https://feedbacky-demo.netlify.app/)
-  https://feedbacky-demo.netlify.app/
+- Feedbacky Demo: https://feedbacky-demo.netlify.app/
 
 - A button with icon and modal exists at demo. It can be integrated to other projects following the steps below. The development of background at homepage or wherever Feedbacky is used up to the user.
 
-## Usages <a name="usages"></a>
+## Installation <a name="usages"></a>
 
 Feedbacky can be integrated to web projects through 2 different ways.
 
-- By NPM Package
-- By CDN
+- Via NPM Package
+- Via CDN
 
-## Usage Via NPM <a name="npm"></a>
+### Via NPM <a name="npm"></a>
 
 - You can follow to steps to install the NPM package, import the `Feedbacky` component and use it.
 
@@ -70,12 +69,9 @@ export const App = () => {
 };
 ```
 
-- ### Important Note:
-  The props except `googleSheetId` are optional. If they are not sent, the default values will be used.
+### Usage Via CDN <a name="cdn"></a>
 
-## Usage Via CDN <a name="cdn"></a>
-
-- Feedbacky can be integrated also by CDN with `script` tags.
+- Feedbacky can be integrated also via CDN with `script` tags.
 
 - Go to main `HTML` file. `(index.html)`
 
@@ -89,15 +85,11 @@ export const App = () => {
 
 #### CDN
 
-- Add `CDN` using `script` tag.
+- Add `CDN` using `script` tag. Then, customize Feedbacky component with `feedbacky.run()`.
 
 ```js
 <script src="https://cdn.jsdelivr.net/npm/feedbacky-cdn@1.0.0/index.js"></script>
-```
 
-##### Add New Script Tag For Props
-
-```js
 <script>
     feedbacky.run({
         googleSheetId: "95a57d16-dcc3-4f57-8e24-dfbba8e9e786",
@@ -114,25 +106,22 @@ export const App = () => {
 </script>
 ```
 
-- #### Important Note:
-  Remember that the props except `googleSheetId` are optional. If they are not sent, the default values will be used.
+## Props Table <a name="props"></a>
 
-## Prop Types Table <a name="props"></a>
+| Prop Name                  | Prop Type | Value (E.G.)                           | Requirement |
+| :------------------------- | :-------- | :------------------------------------- | :---------- |
+| `googleSheetId`            | `string`  | "95a57d16-dcc3-4f57-8e24-dfbba8e9e786" | `required`  |
+| `modalSuccessTitle`        | `string`  | "Thanks for sharing your feedback!"    | `optional`  |
+| `sendButtonText`           | `string`  | "Send Feedback"                        | `optional`  |
+| `nameInputPlaceholder`     | `string`  | "Your Name..."                         | `optional`  |
+| `surnameInputPlaceholder`  | `string`  | "Your Surname..."                      | `optional`  |
+| `feedbackInputPlaceholder` | `string`  | "Your Feedback..."                     | `optional`  |
+| `modalSuccessIconSize`     | `number`  | 100                                    | `optional`  |
+| `modalSuccessIconColor`    | `string`  | green                                  | `optional`  |
+| `feedbackyButtonIconSize`  | `number`  | 45                                     | `optional`  |
+| `modalTitle`               | `string`  | "Share what you think with us..."      | `optional`  |
 
-| Prop Name                  | Prop Type | Value (E.G.)                           |
-| :------------------------- | :-------- | :------------------------------------- |
-| `googleSheetId`            | `string`  | "95a57d16-dcc3-4f57-8e24-dfbba8e9e786" |
-| `modalSuccessTitle`        | `string`  | "Thanks for sharing your feedback!"    |
-| `sendButtonText`           | `string`  | "Send Feedback"                        |
-| `nameInputPlaceholder`     | `string`  | "Your Name..."                         |
-| `surnameInputPlaceholder`  | `string`  | "Your Surname..."                      |
-| `feedbackInputPlaceholder` | `string`  | "Your Feedback..."                     |
-| `modalSuccessIconSize`     | `number`  | 100                                    |
-| `modalSuccessIconColor`    | `string`  | green                                  |
-| `feedbackyButtonIconSize`  | `number`  | 45                                     |
-| `modalTitle`               | `string`  | "Share what you think with us..."      |
-
-### How To Get A Google Sheet Id? <a name="google-sheet"></a>
+## How To Get A Google Sheet ID? <a name="google-sheet"></a>
 
 - The data is saved in a Google Sheet file for Feedbacky App. You need to send a value for `googleSheetId` prop to use it.
 
@@ -172,8 +161,19 @@ export const App = () => {
 
 - Use this ID as your `googleSheetId` value.
 
-## Additional Notes <a name="notes"></a>
+## What I Learned <a name="learn"></a>
+
+I grasped subjects below better:
+
+- Jest and mocking
+- Bundling processes
+- Easily integrating projects with CDN or NPM
+- State management with Context API
+- Clean Code
+- Tailwind
+
+## Notes For Reviewer <a name="notes"></a>
 
 > **Notes:** Here is the additional part for the development notes.
 
-- I used `console.log()` at `main.tsx` to add the `feedbacky.run()` method to the bundle.
+- I needed to use `console.log()` at `main.tsx` to add the `feedbacky` object to the CDN bundle. If feedbacky object was not used there, the bundler sees it as a dead code, and so it doesn't put it in the bundle file.
